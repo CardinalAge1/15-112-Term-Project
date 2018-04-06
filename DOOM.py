@@ -8,12 +8,14 @@ class MyApp(ShowBase):
 
         # Load the environment model.
         self.scene = self.loader.loadModel(
-            "/Users/danielgarcia/Docs/15-112-Term-Project/Test.egg")
+            "model\environment")
         # Reparent the model to render.
         self.scene.reparentTo(self.render)
         # Apply scale and position transforms on the model.
-        self.scene.setScale(0.25, 0.25, 0.25)
-        self.scene.setPos(-8, 42, 0)
+        self.scene.setScale(1, 1, 1)
+        self.scene.setPos(0, 0, 5)
+        base.disableMouse()
+        base.useDrive()
 
 
 app = MyApp()
