@@ -13,6 +13,8 @@ from panda3d.core import CollisionHandlerQueue, CollisionRay
 import time
 from panda3d.core import NodePath
 from panda3d.physics import *
+from direct.gui.DirectGui import DirectFrame, DirectLabel
+import Things
 
 
 class MyApp(ShowBase):
@@ -30,7 +32,7 @@ class MyApp(ShowBase):
         self.createKeyControls()
 
         mySound = base.loader.loadSfx(
-            "/Users/danielgarcia/Docs/15-112-Term-Project/At Doom's Gate.ogg")
+            """/Users/danielgarcia/Docs/15-112-Term-Project/models/At Doom's Gate.ogg""")
         mySound.play()
 
         self.keyMap = {"left": 0, "right": 0, "forward": 0, "backward": 0,
@@ -48,25 +50,21 @@ class MyApp(ShowBase):
         # Create a collision node for this object.
         cNode = CollisionNode('camera')
         # Attach a collision sphere solid to the collision node.
-        cNode.addSolid(CollisionSphere(0, 0, 0, .75))
+        cNode.addSolid(CollisionSphere(2, 0, 0, .75))
+        cNode.addSolid(CollisionSphere(-2, 0, 0, .75))
+        cNode.addSolid(CollisionSphere(0, 2, 0, .75))
+        cNode.addSolid(CollisionSphere(0, -2, 0, .75))
         cNode.addSolid(CollisionSphere(0, 0, -10, .75))
+        cNode.addSolid(CollisionSphere(0, 0, 2, .75))
         # Attach the collision node to the object's model.
         cameraC = base.camera.attachNewNode(cNode)
         # Set the object's collision node to render as visible.
-        cameraC.show()
-
-        # Load another model.
-        self.scene = self.loader.loadModel(
-            "/Users/danielgarcia/Docs/15-112-Term-Project/Test.egg")
-        # Reparent the model to render.
-        self.scene.reparentTo(render)
-        # Set the position of the model in the scene.
-        self.scene.setScale(0.25, 0.25, 0.25)
-        self.scene.setPos(0, 0, 0)
+        self.scene = Things.Thing(base, 0, 0, 0, 0.25,
+                                  "/Users/danielgarcia/Docs/15-112-Term-Project/models/Test.egg")
 
         # Add the Pusher collision handler to the collision traverser.
         base.cTrav.addCollider(cameraC, pusher)
-        # Add the 'frowney' collision node to the Pusher collision handler.
+        # Add the 'camera' collision node to the Pusher collision handler.
         pusher.addCollider(cameraC, base.camera, base.drive.node())
 
     def setKey(self, key, value):
@@ -79,10 +77,18 @@ class MyApp(ShowBase):
         self.accept("s", self.setKey, ["right", 1])
         self.accept("a", self.setKey, ["backward", 1])
         self.accept("d", self.setKey, ["forward", 1])
+        self.accept("shift-w", self.setKey, ["left", 1])
+        self.accept("shift-s", self.setKey, ["right", 1])
+        self.accept("shift-a", self.setKey, ["backward", 1])
+        self.accept("shift-d", self.setKey, ["forward", 1])
         self.accept("shift", self.setKey, ["fast", 1])
         self.accept("space-up", self.setKey, ["jump", 1])
 
         # directional movement - arrow up
+        self.accept("shift-w-up", self.setKey, ["left", 0])
+        self.accept("shift-s-up", self.setKey, ["right", 0])
+        self.accept("shift-a-up", self.setKey, ["backward", 0])
+        self.accept("shift-d-up", self.setKey, ["forward", 0])
         self.accept("w-up", self.setKey, ["left", 0])
         self.accept("s-up", self.setKey, ["right", 0])
         self.accept("a-up", self.setKey, ["backward", 0])
@@ -90,6 +96,10 @@ class MyApp(ShowBase):
         self.accept("shift-up", self.setKey, ["fast", 0])
 
         # turning movement
+        self.accept("shift-arrow_left", self.setKey, ["turn-left", 1])
+        self.accept("shift-arrow_right", self.setKey, ["turn-right", 1])
+        self.accept("shift-arrow_left-up", self.setKey, ["turn-left", 0])
+        self.accept("shift-arrow_right-up", self.setKey, ["turn-right", 0])
         self.accept("arrow_left", self.setKey, ["turn-left", 1])
         self.accept("arrow_right", self.setKey, ["turn-right", 1])
         self.accept("arrow_left-up", self.setKey, ["turn-left", 0])
@@ -102,25 +112,9 @@ class MyApp(ShowBase):
         (dx, dy, dz) = (0, 0, 0)
         (dh, dp, dr) = (0, 0, 0)
 
-        if self.keyMap["forward"] > 0:
-            (dx) = (1)
-            if self.keyMap["fast"] > 0:
-                dx *= 2
+        dx = self.keyMap["forward"] - self.keyMap["backward"]
 
-        elif self.keyMap["backward"] > 0:
-            (dx) = (-1)
-            if self.keyMap["fast"] > 0:
-                dx *= 2
-
-        if self.keyMap["left"] > 0:
-            (dy) = (1)
-            if self.keyMap["fast"] > 0:
-                dy *= 2
-
-        elif self.keyMap["right"] > 0:
-            (dy) = (-1)
-            if self.keyMap["fast"] > 0:
-                dy *= 2
+        dy = self.keyMap["left"] - self.keyMap["right"]
 
         if self.keyMap["jump"] > 0:
             self.fall = 5
@@ -131,6 +125,10 @@ class MyApp(ShowBase):
 
         elif self.keyMap["turn-right"] > 0:
             (dh, dp, dr) = (-1, 0, 0)
+
+        if self.keyMap["fast"] > 0:
+            dx *= 2
+            dy *= 2
 
         if self.fall >= -5:
             self.fall -= 0.5
