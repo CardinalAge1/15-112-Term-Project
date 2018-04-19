@@ -49,6 +49,7 @@ class MyApp(ShowBase):
         taskMgr.doMethodLater(timer, self.doomGuy.move, "move")
         taskMgr.doMethodLater(timer, Bullet.step, "step")
         taskMgr.doMethodLater(0.1, self.doomGuy.shoot, "shoot")
+        taskMgr.doMethodLater(timer, self.doomGuy.checkHit, "checkHit")
 
         self.scene = Things.Thing(base, 0, 0, 0, 0.25,
                                   "/Users/danielgarcia/Docs/15-112-Term-Project/models/Test.egg")

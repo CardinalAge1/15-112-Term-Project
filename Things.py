@@ -21,7 +21,7 @@ class Doomguy(object):
     def __init__(self, base, xyz, hpr, node, pusher, traverser):
         self.base = base
         self.shot = 0
-        self.guns = [(100, 2, "smiley"), (25, 10, "frowney")]
+        self.guns = [(100, 1, "smiley", 10), (25, 10, "frowney", 2)]
         self.gun = 1
         self.mouseX = self.mouseY = 0
         self.x, self.y, self.z = xyz[0], xyz[1], xyz[2]
@@ -41,7 +41,7 @@ class Doomguy(object):
         cNode.addSolid(CollisionSphere(-2, 0, 0, .75))
         cNode.addSolid(CollisionSphere(0, 2, 0, .75))
         cNode.addSolid(CollisionSphere(0, -2, 0, .75))
-        cNode.addSolid(CollisionSphere(0, 0, -10, 2))
+        cNode.addSolid(CollisionSphere(0, 0, -10, 6))
 
         # Attach the collision node to the object's model.
         doomGuyC = self.node.attachNewNode(cNode)
@@ -54,9 +54,15 @@ class Doomguy(object):
     def createBullet(self, speed):
         self.shot += 1
         if self.shot % self.guns[self.gun][0] == 0:
-            Bullet.Bullet(self.base, self.guns[self.gun][2], (self.base.camera.getX(), self.base.camera.getY(),
-                                                              self.base.camera.getZ()), self.base.camera.getH(),
-                          self.base.camera.getP(), self.guns[self.gun][1])
+            Bullet.Bullet(self.base,
+                          self.guns[self.gun][2],
+                          (self.base.camera.getX(),
+                           self.base.camera.getY(),
+                           self.base.camera.getZ()),
+                          self.base.camera.getH(),
+                          self.base.camera.getP(),
+                          self.guns[self.gun][1],
+                          self.guns[self.gun][3])
 
     def switchWeapon(self, direction):
         if direction == "up":
@@ -74,6 +80,27 @@ class Doomguy(object):
         if self.keyMap["shoot"] > 0:
             self.createBullet(0.5)
         return task.cont
+
+    def checkHit(self, task):
+        bullets = Bullet.Bullet.bullets
+        newList = []
+        for bullet in range(len(bullets)):
+            if 10 > Bullet.distance(bullets[bullet].x,
+                                    bullets[bullet].y,
+                                    bullets[bullet].z,
+                                    self.base.camera.getX(),
+                                    self.base.camera.getY(),
+                                    self.base.camera.getZ()):
+                self.takeDamage(bullets[bullet].damage)
+                bullets[bullet].model.removeNode()
+                continue
+            newList.append(bullets[bullet])
+        Bullet.Bullet.bullets = newList
+        return task.cont
+
+    def takeDamage(self, damage):
+        self.health -= damage
+        print(self.health)
 
     def setKey(self, key, value):
         self.keyMap[key] = value

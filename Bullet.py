@@ -16,6 +16,10 @@ from panda3d.physics import *
 from direct.gui.DirectGui import DirectFrame, DirectLabel
 
 
+def distance(x1, y1, z1, x2, y2, z2):
+    return (((x1 - x2)**2) + ((y1 - y2)**2) + ((z1 - z2)**2))**0.5
+
+
 def step(task):
     newList = []
     for bullet in range(len(Bullet.bullets)):
@@ -24,6 +28,7 @@ def step(task):
             math.fabs(Bullet.bullets[bullet].y) > 4000 or
                 math.fabs(Bullet.bullets[bullet].z) > 4000):
             continue
+            Bullet.bullets[bullet].model.removeNode()
         newList.append(Bullet.bullets[bullet])
     Bullet.bullets = newList
     return task.cont
@@ -32,7 +37,8 @@ def step(task):
 class Bullet(object):
     bullets = []
 
-    def __init__(self, base, path, xyz, h, p, speed):
+    def __init__(self, base, path, xyz, h, p, speed, damage):
+        self.damage = damage
         self.model = base.loader.loadModel(path)
         self.model.reparentTo(render)
         self.model.setScale(1, 1, 1)
