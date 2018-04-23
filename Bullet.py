@@ -20,6 +20,10 @@ def distance(x1, y1, z1, x2, y2, z2):
     return (((x1 - x2)**2) + ((y1 - y2)**2) + ((z1 - z2)**2))**0.5
 
 
+def distanceXY(x1, y1, x2, y2):
+    return (((x1 - x2)**2) + ((y1 - y2)**2))**0.5
+
+
 def step(task):
     newList = []
     for bullet in range(len(Bullet.bullets)):
@@ -29,6 +33,7 @@ def step(task):
                 math.fabs(Bullet.bullets[bullet].z) > 4000):
             continue
             Bullet.bullets[bullet].model.removeNode()
+            Bullet.bullets[bullet].model.unloadModel()
         newList.append(Bullet.bullets[bullet])
     Bullet.bullets = newList
     return task.cont
@@ -47,9 +52,9 @@ class Bullet(object):
         self.dx, self.dy, self.dz = math.sin(
             -h * (math.pi / 180)), math.cos(-h * (math.pi / 180)), math.sin(p * (math.pi / 180))
         self.speed = speed
-        self.x += 10 * self.dx
-        self.y += 10 * self.dy
-        self.z += 10 * self.dz
+        self.x += 20 * self.dx
+        self.y += 20 * self.dy
+        self.z += 20 * self.dz
         self.model.setFluidPos(self.x, self.y, self.z)
         Bullet.bullets.append(self)
 

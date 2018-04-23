@@ -15,8 +15,10 @@ from panda3d.core import NodePath
 from panda3d.physics import *
 from direct.gui.DirectGui import DirectFrame, DirectLabel
 import Things
+import Doomguy
 from Muzak import *
 import Bullet
+from direct.gui.OnscreenImage import OnscreenImage
 
 
 class MyApp(ShowBase):
@@ -42,17 +44,24 @@ class MyApp(ShowBase):
         base.cTrav.setRespectPrevTransform(True)
 
         timer = 0.2
-        self.doomGuy = Things.Doomguy(base, (0, 1, 0), (0, 0, 0),
-                                      base.camera, pusher, base.cTrav)
+        self.doomGuy = Doomguy.Doomguy(base, (0, 1, 0), (0, 0, 0),
+                                       base.camera, pusher, base.cTrav)
+        self.monster = Things.Monster(
+            base, -200, 600, 0, 10, "box", pusher, base.cTrav)
 
         self.createKeyControls()
-        taskMgr.doMethodLater(timer, self.doomGuy.move, "move")
         taskMgr.doMethodLater(timer, Bullet.step, "step")
         taskMgr.doMethodLater(0.1, self.doomGuy.shoot, "shoot")
         taskMgr.doMethodLater(timer, self.doomGuy.checkHit, "checkHit")
+        taskMgr.doMethodLater(0.1, self.monster.shoot, "shoot")
+        taskMgr.doMethodLater(timer, self.monster.checkHit, "checkHit")
 
         self.scene = Things.Thing(base, 0, 0, 0, 0.25,
                                   "/Users/danielgarcia/Docs/15-112-Term-Project/models/Test.egg")
+        self.imageObject = OnscreenImage(
+            image='/Users/danielgarcia/Docs/15-112-Term-Project/models/crosshair.png', pos=(0, 0, 0), scale=0.5)
+
+        self.imageObject.setTransparency(TransparencyAttrib.MAlpha)
 
     def createKeyControls(self):
 
