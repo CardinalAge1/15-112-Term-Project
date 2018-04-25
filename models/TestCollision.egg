@@ -1,8 +1,8 @@
 <CoordinateSystem> { Z-up } 
-<Material> SKINTEK2 {
-  <Scalar> diffr { 0.329412 }
-  <Scalar> diffg { 0.262745 }
-  <Scalar> diffb { 0.196078 }
+<Material> SUPPORT3 {
+  <Scalar> diffr { 0.164706 }
+  <Scalar> diffg { 0.149020 }
+  <Scalar> diffb { 0.101961 }
   <Scalar> specr { 0.330000 }
   <Scalar> specg { 0.330000 }
   <Scalar> specb { 0.330000 }
@@ -15,10 +15,26 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Material> TEKWALL2 {
-  <Scalar> diffr { 0.223529 }
-  <Scalar> diffg { 0.211765 }
-  <Scalar> diffb { 0.168627 }
+<Material> DEM1_5 {
+  <Scalar> diffr { 0.215686 }
+  <Scalar> diffg { 0.243137 }
+  <Scalar> diffb { 0.141176 }
+  <Scalar> specr { 0.330000 }
+  <Scalar> specg { 0.330000 }
+  <Scalar> specb { 0.330000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 0.000000 }
+  <Scalar> ambg { 0.000000 }
+  <Scalar> ambb { 0.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> FLAT1_2 {
+  <Scalar> diffr { 0.329412 }
+  <Scalar> diffg { 0.235294 }
+  <Scalar> diffb { 0.121569 }
   <Scalar> specr { 0.330000 }
   <Scalar> specg { 0.330000 }
   <Scalar> specb { 0.330000 }
@@ -47,26 +63,10 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Material> MARBLOD1 {
-  <Scalar> diffr { 0.313725 }
-  <Scalar> diffg { 0.317647 }
-  <Scalar> diffb { 0.219608 }
-  <Scalar> specr { 0.330000 }
-  <Scalar> specg { 0.330000 }
-  <Scalar> specb { 0.330000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 0.000000 }
-  <Scalar> ambg { 0.000000 }
-  <Scalar> ambb { 0.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> PIPE4 {
-  <Scalar> diffr { 0.372549 }
-  <Scalar> diffg { 0.294118 }
-  <Scalar> diffb { 0.200000 }
+<Material> DOORTRAK {
+  <Scalar> diffr { 0.164706 }
+  <Scalar> diffg { 0.164706 }
+  <Scalar> diffb { 0.164706 }
   <Scalar> specr { 0.330000 }
   <Scalar> specg { 0.330000 }
   <Scalar> specb { 0.330000 }
@@ -95,42 +95,10 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Material> MARBLE1 {
-  <Scalar> diffr { 0.309804 }
-  <Scalar> diffg { 0.329412 }
-  <Scalar> diffb { 0.223529 }
-  <Scalar> specr { 0.330000 }
-  <Scalar> specg { 0.330000 }
-  <Scalar> specb { 0.330000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 0.000000 }
-  <Scalar> ambg { 0.000000 }
-  <Scalar> ambb { 0.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
 <Material> BIGDOOR7 {
   <Scalar> diffr { 0.262745 }
   <Scalar> diffg { 0.203922 }
   <Scalar> diffb { 0.133333 }
-  <Scalar> specr { 0.330000 }
-  <Scalar> specg { 0.330000 }
-  <Scalar> specb { 0.330000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 0.000000 }
-  <Scalar> ambg { 0.000000 }
-  <Scalar> ambb { 0.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> MARBFAC2 {
-  <Scalar> diffr { 0.309804 }
-  <Scalar> diffg { 0.325490 }
-  <Scalar> diffb { 0.223529 }
   <Scalar> specr { 0.330000 }
   <Scalar> specg { 0.330000 }
   <Scalar> specb { 0.330000 }
@@ -160,58 +128,10 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Material> DEM1_5 {
-  <Scalar> diffr { 0.215686 }
-  <Scalar> diffg { 0.243137 }
-  <Scalar> diffb { 0.141176 }
-  <Scalar> specr { 0.330000 }
-  <Scalar> specg { 0.330000 }
-  <Scalar> specb { 0.330000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 0.000000 }
-  <Scalar> ambg { 0.000000 }
-  <Scalar> ambb { 0.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> DOORTRAK {
-  <Scalar> diffr { 0.164706 }
-  <Scalar> diffg { 0.164706 }
-  <Scalar> diffb { 0.164706 }
-  <Scalar> specr { 0.330000 }
-  <Scalar> specg { 0.330000 }
-  <Scalar> specb { 0.330000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 0.000000 }
-  <Scalar> ambg { 0.000000 }
-  <Scalar> ambb { 0.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> SUPPORT3 {
-  <Scalar> diffr { 0.164706 }
-  <Scalar> diffg { 0.149020 }
-  <Scalar> diffb { 0.101961 }
-  <Scalar> specr { 0.330000 }
-  <Scalar> specg { 0.330000 }
-  <Scalar> specb { 0.330000 }
-  <Scalar> shininess { 12.5 }
-  <Scalar> ambr { 0.000000 }
-  <Scalar> ambg { 0.000000 }
-  <Scalar> ambb { 0.000000 }
-  <Scalar> emitr { 0.000000 }
-  <Scalar> emitg { 0.000000 }
-  <Scalar> emitb { 0.000000 }
-}
-
-<Material> FLAT1_2 {
+<Material> SKINTEK2 {
   <Scalar> diffr { 0.329412 }
-  <Scalar> diffg { 0.235294 }
-  <Scalar> diffb { 0.121569 }
+  <Scalar> diffg { 0.262745 }
+  <Scalar> diffb { 0.196078 }
   <Scalar> specr { 0.330000 }
   <Scalar> specg { 0.330000 }
   <Scalar> specb { 0.330000 }
@@ -224,24 +144,88 @@
   <Scalar> emitb { 0.000000 }
 }
 
-<Texture> UVMap_TEKWALL4.png {
-  "./tex/TEKWALL4.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
+<Material> MARBLOD1 {
+  <Scalar> diffr { 0.313725 }
+  <Scalar> diffg { 0.317647 }
+  <Scalar> diffb { 0.219608 }
+  <Scalar> specr { 0.330000 }
+  <Scalar> specg { 0.330000 }
+  <Scalar> specb { 0.330000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 0.000000 }
+  <Scalar> ambg { 0.000000 }
+  <Scalar> ambb { 0.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
 }
 
-<Texture> Kd.018 {
-  "./tex/TEKWALL4.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
+<Material> MARBFAC2 {
+  <Scalar> diffr { 0.309804 }
+  <Scalar> diffg { 0.325490 }
+  <Scalar> diffb { 0.223529 }
+  <Scalar> specr { 0.330000 }
+  <Scalar> specg { 0.330000 }
+  <Scalar> specb { 0.330000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 0.000000 }
+  <Scalar> ambg { 0.000000 }
+  <Scalar> ambb { 0.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
 }
 
-<Texture> UVMap_MARBLOD1.png {
-  "./tex/MARBLOD1.png"
+<Material> MARBLE1 {
+  <Scalar> diffr { 0.309804 }
+  <Scalar> diffg { 0.329412 }
+  <Scalar> diffb { 0.223529 }
+  <Scalar> specr { 0.330000 }
+  <Scalar> specg { 0.330000 }
+  <Scalar> specb { 0.330000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 0.000000 }
+  <Scalar> ambg { 0.000000 }
+  <Scalar> ambb { 0.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> PIPE4 {
+  <Scalar> diffr { 0.372549 }
+  <Scalar> diffg { 0.294118 }
+  <Scalar> diffb { 0.200000 }
+  <Scalar> specr { 0.330000 }
+  <Scalar> specg { 0.330000 }
+  <Scalar> specb { 0.330000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 0.000000 }
+  <Scalar> ambg { 0.000000 }
+  <Scalar> ambb { 0.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Material> TEKWALL2 {
+  <Scalar> diffr { 0.223529 }
+  <Scalar> diffg { 0.211765 }
+  <Scalar> diffb { 0.168627 }
+  <Scalar> specr { 0.330000 }
+  <Scalar> specg { 0.330000 }
+  <Scalar> specb { 0.330000 }
+  <Scalar> shininess { 12.5 }
+  <Scalar> ambr { 0.000000 }
+  <Scalar> ambg { 0.000000 }
+  <Scalar> ambb { 0.000000 }
+  <Scalar> emitr { 0.000000 }
+  <Scalar> emitg { 0.000000 }
+  <Scalar> emitb { 0.000000 }
+}
+
+<Texture> Kd.016 {
+  "./tex/BIGDOOR7.png"
   <Scalar> envtype { MODULATE }
   <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
   <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
@@ -256,112 +240,8 @@
   <Scalar> wrap { REPEAT }
 }
 
-<Texture> Kd.010 {
-  "./tex/E3M8.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_SUPPORT3.png {
-  "./tex/SUPPORT3.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_TEKWALL2.png {
-  "./tex/TEKWALL2.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_PIPE4.png {
-  "./tex/PIPE4.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_SKINTEK2.png {
-  "./tex/SKINTEK2.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> Kd.013 {
-  "./tex/TEKWALL2.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> Kd.011 {
-  "./tex/MARBLE1.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_DEM1_5.png {
-  "./tex/DEM1_5.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_BIGDOOR7.png {
-  "./tex/BIGDOOR7.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_E3M8.png {
-  "./tex/E3M8.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> Kd.012 {
-  "./tex/PIPE4.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
 <Texture> UVMap_DOORTRAK.png {
   "./tex/DOORTRAK.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> Kd.015 {
-  "./tex/DEM1_5.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> UVMap_FLAT1_2.png {
-  "./tex/FLAT1_2.png"
   <Scalar> envtype { MODULATE }
   <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
   <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
@@ -376,16 +256,8 @@
   <Scalar> wrap { REPEAT }
 }
 
-<Texture> UVMap_MARBFAC2.png {
-  "./tex/MARBFAC2.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> Kd.009 {
-  "./tex/MARBFAC2.png"
+<Texture> UVMap_PIPE4.png {
+  "./tex/PIPE4.png"
   <Scalar> envtype { MODULATE }
   <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
   <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
@@ -400,24 +272,32 @@
   <Scalar> wrap { REPEAT }
 }
 
-<Texture> Kd.016 {
-  "./tex/BIGDOOR7.png"
+<Texture> Kd.013 {
+  "./tex/TEKWALL2.png"
   <Scalar> envtype { MODULATE }
   <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
   <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
   <Scalar> wrap { REPEAT }
 }
 
-<Texture> Kd.021 {
-  "./tex/FLAT1_2.png"
-  <Scalar> envtype { MODULATE }
-  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
-  <Scalar> wrap { REPEAT }
-}
-
-<Texture> Kd.020 {
+<Texture> UVMap_SUPPORT3.png {
   "./tex/SUPPORT3.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_SKINTEK2.png {
+  "./tex/SKINTEK2.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.018 {
+  "./tex/TEKWALL4.png"
   <Scalar> envtype { MODULATE }
   <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
   <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
@@ -432,7 +312,128 @@
   <Scalar> wrap { REPEAT }
 }
 
+<Texture> UVMap_MARBFAC2.png {
+  "./tex/MARBFAC2.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_E3M8.png {
+  "./tex/E3M8.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.015 {
+  "./tex/DEM1_5.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.010 {
+  "./tex/E3M8.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_FLAT1_2.png {
+  "./tex/FLAT1_2.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_DEM1_5.png {
+  "./tex/DEM1_5.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.012 {
+  "./tex/PIPE4.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_TEKWALL4.png {
+  "./tex/TEKWALL4.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.009 {
+  "./tex/MARBFAC2.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.020 {
+  "./tex/SUPPORT3.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.021 {
+  "./tex/FLAT1_2.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> Kd.011 {
+  "./tex/MARBLE1.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_BIGDOOR7.png {
+  "./tex/BIGDOOR7.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_TEKWALL2.png {
+  "./tex/TEKWALL2.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
+<Texture> UVMap_MARBLOD1.png {
+  "./tex/MARBLOD1.png"
+  <Scalar> envtype { MODULATE }
+  <Scalar> minfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> magfilter { LINEAR_MIPMAP_LINEAR }
+  <Scalar> wrap { REPEAT }
+}
+
   <Group> "Mesh53 Model" {
+    <Collide> { Polyset descend }
     <Transform> {
       <Matrix4> {
         1.0 0.0 0.0 0.0 

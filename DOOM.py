@@ -19,6 +19,7 @@ import Doomguy
 from Muzak import *
 import Bullet
 from direct.gui.OnscreenImage import OnscreenImage
+from direct.gui.OnscreenText import OnscreenText
 
 
 class MyApp(ShowBase):
@@ -31,13 +32,25 @@ class MyApp(ShowBase):
         # Reparent the model to render.
         # Apply scale and position transforms on the model.
         base.disableMouse()
-        """audio = Muzak(base)"""
+
         self.mouseX = 0
         self.mouseY = 0
         if base.mouseWatcherNode.hasMouse():
             self.mouseX = base.mouseWatcherNode.getMouseX()
             self.mouseY = base.mouseWatcherNode.getMouseY()
+        self.instructions = OnscreenText(
+            text='Hit "Enter" to enter the', pos=(0, 0.1), scale=0.2)
+        self.title = OnscreenText(
+            text='Gauntlet of the Doom Slayer', pos=(0, -0.1), scale=0.2)
+        self.controls = OnscreenText(
+            text='WASD to move, hold Shift to run, scroll to switch weapons, mouse to turn and shoot, "R" to restart', pos=(0, 0.4), scale=0.05)
+        self.acceptOnce("enter", self.startGame, [])
 
+    def startGame(self):
+        self.instructions.destroy()
+        self.title.destroy()
+        self.controls.destroy()
+        audio = Muzak(base)
         # Initialize the Pusher collision handler.
         pusher = CollisionHandlerPusher()
         base.cTrav = CollisionTraverser()
@@ -48,13 +61,17 @@ class MyApp(ShowBase):
                                        base.camera, pusher, base.cTrav)
         self.monster = Things.Monster(
             base, -200, 600, 0, 10, "box", pusher, base.cTrav)
+        self.monster = Things.Monster(
+            base, 200, 600, 0, 10, "box", pusher, base.cTrav)
+        self.monster = Things.Monster(
+            base, 250, 280, 0, 10, "box", pusher, base.cTrav)
+        self.monster = Things.Monster(
+            base, -300, 200, 0, 10, "box", pusher, base.cTrav)
 
         self.createKeyControls()
         taskMgr.doMethodLater(timer, Bullet.step, "step")
         taskMgr.doMethodLater(0.1, self.doomGuy.shoot, "shoot")
         taskMgr.doMethodLater(timer, self.doomGuy.checkHit, "checkHit")
-        taskMgr.doMethodLater(0.1, self.monster.shoot, "shoot")
-        taskMgr.doMethodLater(timer, self.monster.checkHit, "checkHit")
 
         self.scene = Things.Thing(base, 0, 0, 0, 0.25,
                                   "/Users/danielgarcia/Docs/15-112-Term-Project/models/Test.egg")
@@ -101,7 +118,10 @@ class MyApp(ShowBase):
         self.accept("d-up", self.doomGuy.setKey, ["forward", 0])
         self.accept("shift-up", self.doomGuy.setKey, ["fast", 0])
 
+        self.accept("r", os.execv, [sys.executable, ['python'] + sys.argv])
+        self.accept("p", print, ["here"])
+
 
 app = MyApp()
 app.run()
-# Test"""
+# Test

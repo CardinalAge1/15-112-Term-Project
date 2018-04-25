@@ -15,10 +15,12 @@ from panda3d.core import NodePath
 from panda3d.physics import *
 from direct.gui.DirectGui import DirectFrame, DirectLabel
 import Bullet
+from direct.gui.OnscreenText import OnscreenText
 
 
 class Doomguy(object):
     def __init__(self, base, xyz, hpr, node, pusher, traverser):
+        self.dead = False
         self.base = base
         self.shot = 0
         self.guns = [(100, 1, "smiley", 10), (25, 10, "frowney", 2)]
@@ -31,17 +33,13 @@ class Doomguy(object):
                        "backward": 0, "fast": 0, "jump": 0, "shoot": 0}
         self.fall = 0
         self.jump = 0
-        self.health = 20
+        self.health = 200
+        self.traverser = traverser
         # Create a collision node for this object.
         cNode = CollisionNode('doomGuy')
         # Attach a collision sphere solid to the collision node.
-        cNode.addSolid(CollisionSphere(0, 0, 0, .75))
-        cNode.addSolid(CollisionSphere(0, 0, 2, .75))
-        cNode.addSolid(CollisionSphere(2, 0, 0, .75))
-        cNode.addSolid(CollisionSphere(-2, 0, 0, .75))
-        cNode.addSolid(CollisionSphere(0, 2, 0, .75))
-        cNode.addSolid(CollisionSphere(0, -2, 0, .75))
-        cNode.addSolid(CollisionSphere(0, 0, -10, 6))
+        cNode.addSolid(CollisionSphere(0, 0, 0, .1))
+        cNode.addSolid(CollisionSphere(0, 0, -10, 8))
 
         # Attach the collision node to the object's model.
         doomGuyC = self.node.attachNewNode(cNode)
@@ -62,22 +60,24 @@ class Doomguy(object):
                           self.base.camera.getH(),
                           self.base.camera.getP(),
                           self.guns[self.gun][1],
-                          self.guns[self.gun][3])
+                          self.guns[self.gun][3],
+                          self.traverser)
 
     def switchWeapon(self, direction):
-        if direction == "up":
-            if self.gun == len(self.guns) - 1:
-                self.gun = 0
-            else:
-                self.gun += 1
-        if direction == "down":
-            if self.gun == 0:
-                self.gun = len(self.guns) - 1
-            else:
-                self.gun -= 1
+        if not self.dead:
+            if direction == "up":
+                if self.gun == len(self.guns) - 1:
+                    self.gun = 0
+                else:
+                    self.gun += 1
+            if direction == "down":
+                if self.gun == 0:
+                    self.gun = len(self.guns) - 1
+                else:
+                    self.gun -= 1
 
     def shoot(self, task):
-        if self.keyMap["shoot"] > 0:
+        if self.keyMap["shoot"] > 0 and not self.dead:
             self.createBullet(0.5)
         return task.cont
 
@@ -101,55 +101,60 @@ class Doomguy(object):
     def takeDamage(self, damage):
         self.health -= damage
         print("Doomguy:", self.health)
+        if self.health <= 0:
+            self.dead = True
+            textObject = OnscreenText(
+                text='You are DEAD', pos=(0, 0), scale=0.4)
 
     def setKey(self, key, value):
         self.keyMap[key] = value
 
     def move(self, task):
-        x, y = 0, 0
-        if base.mouseWatcherNode.hasMouse():
-            x = base.mouseWatcherNode.getMouseX()
-            y = base.mouseWatcherNode.getMouseY()
-        self.node.setH(base.camera.getH() + 8 * (self.mouseX - x))
-        if -90 <= base.camera.getP() <= 90:
-            self.node.setP(base.camera.getP() - 4 * (self.mouseY - y))
-        else:
-            if base.camera.getP() < -90:
-                base.camera.setP(-90)
-            if base.camera.getP() > 90:
-                base.camera.setP(90)
-        self.mouseX = x
-        self.mouseY = y
-        (x, y, z) = self.node.getPos()
-        (h, p, r) = self.node.getHpr()
-        if z < -100:
-            self.node.setFluidPos(0, 0, 0)
-            return task.cont
+        if not self.dead:
+            x, y = 0, 0
+            if base.mouseWatcherNode.hasMouse():
+                x = base.mouseWatcherNode.getMouseX()
+                y = base.mouseWatcherNode.getMouseY()
+            self.node.setH(base.camera.getH() + 8 * (self.mouseX - x))
+            if -90 <= base.camera.getP() <= 90:
+                self.node.setP(base.camera.getP() - 4 * (self.mouseY - y))
+            else:
+                if base.camera.getP() < -90:
+                    base.camera.setP(-90)
+                if base.camera.getP() > 90:
+                    base.camera.setP(90)
+            self.mouseX = x
+            self.mouseY = y
+            (x, y, z) = self.node.getPos()
+            (h, p, r) = self.node.getHpr()
+            if z < -100:
+                self.node.setFluidPos(0, 0, 0)
+                return task.cont
 
-        (dx, dy, dz) = (0, 0, 0)
-        (dh, dp, dr) = (0, 0, 0)
+            (dx, dy, dz) = (0, 0, 0)
+            (dh, dp, dr) = (0, 0, 0)
 
-        dx = self.keyMap["forward"] - self.keyMap["backward"]
+            dx = self.keyMap["forward"] - self.keyMap["backward"]
 
-        dy = self.keyMap["left"] - self.keyMap["right"]
+            dy = self.keyMap["left"] - self.keyMap["right"]
 
-        if self.keyMap["jump"] > 0 and self.jump < 1:
-            self.fall = 3
-            self.jump = 1
-            self.keyMap["jump"] = 0
+            if self.keyMap["jump"] > 0 and self.jump < 1:
+                self.fall = 3
+                self.jump = 1
+                self.keyMap["jump"] = 0
 
-        if self.keyMap["fast"] > 0:
-            dx *= 2
-            dy *= 2
+            if self.keyMap["fast"] > 0:
+                dx *= 2
+                dy *= 2
 
-        if self.fall >= -5:
-            self.fall -= 0.2
-        dz += self.fall
+            if self.fall >= -5:
+                self.fall -= 0.2
+            dz += self.fall
 
-        (self.x, self.y, self.z) = self.x + dx, self.y + dy, self.z + dz
-        (self.h, self.p, self.r) = self.h + dh, self.p + dp, self.r + dr
-        self.node.setFluidPos(self.node, dx, dy, 0)
-        self.node.setFluidZ(z + dz)
-        if self.fall < -3:
-            self.jump = 0
+            (self.x, self.y, self.z) = self.x + dx, self.y + dy, self.z + dz
+            (self.h, self.p, self.r) = self.h + dh, self.p + dp, self.r + dr
+            self.node.setFluidPos(self.node, dx, dy, 0)
+            self.node.setFluidZ(z + dz)
+            if self.fall < -3:
+                self.jump = 0
         return task.cont

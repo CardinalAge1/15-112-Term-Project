@@ -36,13 +36,22 @@ def step(task):
             Bullet.bullets[bullet].model.unloadModel()
         newList.append(Bullet.bullets[bullet])
     Bullet.bullets = newList
+    """for i in range(len(Bullet.queue.getEntries())):
+        entry = Bullet.queue.getEntry(i)
+        print(entry.getIntoNodePath())
+        objectNodePath = entry.getFromNodePath().findNetTag('object')
+        objectNode = entry.getFromNodePath()
+        if not objectNodePath.isEmpty() and "Test" in repr(entry.getIntoNodePath()):
+            objectNodePath.removeNode()
+            objectNode.removeNode()"""
     return task.cont
 
 
 class Bullet(object):
     bullets = []
+    queue = CollisionHandlerQueue()
 
-    def __init__(self, base, path, xyz, h, p, speed, damage):
+    def __init__(self, base, path, xyz, h, p, speed, damage, traverser):
         self.damage = damage
         self.model = base.loader.loadModel(path)
         self.model.reparentTo(render)
@@ -56,6 +65,18 @@ class Bullet(object):
         self.y += 20 * self.dy
         self.z += 20 * self.dz
         self.model.setFluidPos(self.x, self.y, self.z)
+        self.model.setTag('object', '1')
+        # Create a collision node for this object.
+        cNode = CollisionNode('bullet')
+        # Attach a collision sphere solid to the collision node.
+        cNode.addSolid(CollisionSphere(0, 0, 0, 1))
+        # Attach the collision node to the object's model.
+        bulletC = self.model.attachNewNode(cNode)
+        bulletC.show()
+        bulletC.setCollideMask(BitMask32(0x10))
+        traverser.setRespectPrevTransform(True)
+        traverser.addCollider(bulletC, Bullet.queue)
+        traverser.traverse(render)
         Bullet.bullets.append(self)
 
     def move(self, task):
